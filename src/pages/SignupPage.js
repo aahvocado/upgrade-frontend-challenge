@@ -17,8 +17,10 @@ export default function SignupPage({
                 email,
                 password,
             }) => (
-                <div>
+                <div >
+                    <h2>Sign Up</h2>
                     <form
+                        className='signup-form'
                         onSubmit={onSubmitForm}
                     >
                         <input
