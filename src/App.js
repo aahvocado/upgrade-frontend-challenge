@@ -10,6 +10,7 @@ class App extends Component {
         <header>
           <h1>Welcome to Upgrade challenge</h1>
         </header>
+        
         <SignupProvider>
           <SignupPage />
         </SignupProvider>

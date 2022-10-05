@@ -15,8 +15,19 @@ export function SignupProvider({
 }) {
     const [state, setState] = React.useState(defaultState);
 
+    function updateState(changes) {
+        setState({
+            ...state,
+            ...changes,
+        })
+    }
+
     return (
-        <SignupContext.Provider value={state}>
+        <SignupContext.Provider 
+            value={{
+                ...state,
+                updateState,
+            }}>
             {children}
         </SignupContext.Provider>
     )
