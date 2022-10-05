@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 
+import {SignupProvider} from './contexts/SignupContext';
+import SignupPage from './pages/SignupPage';
+
 class App extends Component {
   render() {
     return (
@@ -7,9 +10,10 @@ class App extends Component {
         <header>
           <h1>Welcome to Upgrade challenge</h1>
         </header>
-        <p>
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <SignupProvider>
+          <SignupPage />
+        </SignupProvider>
+          
       </div>
     );
   }
