@@ -13,8 +13,7 @@ select {
 }
 
 input + input,
-input + button,
-input + .button-container {
+input + button {
     margin-top: 5px;
 }
 
@@ -22,4 +21,8 @@ input + .button-container {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
+    margin-top: auto;
+}
+button + button {
+    margin-left: 5px;
 }
