@@ -10,11 +10,18 @@ export default function SignupPage() {
         email,
         password,
         updateState,
+        fetchColorOptions,
      } = React.useContext(SignupContext);
 
-    function onSubmitForm(evt) {
+    async function onSubmitForm(evt) {
         evt.preventDefault();
-        setIsValid(firstname !== '' && email !== '' && password !== '')
+        const willBeValid = firstname !== '' && email !== '' && password !== '';
+        if (!willBeValid) {
+            return;
+        }
+        
+        await fetchColorOptions();
+        setIsValid(willBeValid);
     }
 
     // `isValid` should only update after the form is submitted

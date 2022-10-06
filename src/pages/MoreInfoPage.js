@@ -4,21 +4,18 @@ import { Link, Redirect } from 'wouter';
 import {SignupContext} from '../contexts/SignupContext';
 
 export default function MoreInfoPage() {
-    const [ colorOptions, setColorOptions ] = React.useState([]);
     const [ isValid, setIsValid ] = React.useState(false);
     const { 
         color,
         isAgreed,
         updateState,
+        colorOptions,
+        fetchColorOptions,
      } = React.useContext(SignupContext);
 
-    async function fetchColorOptions() {
-        const resp = await fetch('http://localhost:3001/api/colors');
-        const data = await resp.json();
-        setColorOptions(data);
-    }
 
     useEffect(() => {
+        // we should only need to attempt this fetch if previous page didn't already
         if (colorOptions.length <= 0) {
             fetchColorOptions();
         }
