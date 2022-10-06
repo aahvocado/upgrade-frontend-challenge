@@ -7152,7 +7152,7 @@
   optionalDependencies:
     "fsevents" "^2.3.2"
 
-"react@^16.13.1", "react@^16.14.0", "react@>= 16":
+"react@^16.13.1", "react@^16.14.0", "react@>= 16", "react@>=16.8.0":
   "integrity" "sha512-0X2CImDkJGApiAlcf0ODKIneSwBPhqJawOa5wCtKbu7ZECrmS26NvtSILynQ66cgkT/RJ4LidJOc3bUESwmU8g=="
   "resolved" "https://registry.npmjs.org/react/-/react-16.14.0.tgz"
   "version" "16.14.0"
@@ -8865,6 +8865,11 @@
   dependencies:
     "@types/trusted-types" "^2.0.2"
     "workbox-core" "6.4.2"
+
+"wouter@^2.8.0-alpha.2":
+  "integrity" "sha512-aPsL5m5rW9RiceClOmGj6t5gn9Ut2TJVr98UDi1u9MIRNYiYVflg6vFIjdDYJ4IAyH0JdnkSgGwfo0LQS3k2zg=="
+  "resolved" "https://registry.npmjs.org/wouter/-/wouter-2.8.0-alpha.2.tgz"
+  "version" "2.8.0-alpha.2"
 
 "wrap-ansi@^7.0.0":
   "integrity" "sha512-YVGIj2kamLSTxw6NsZjoBxfSwsn0ycdesmc4p+Q21c5zPuZ1pl+NfxVdxPtdHvmNVOQ6XSYG4AUtyt/Fi7D16Q=="
