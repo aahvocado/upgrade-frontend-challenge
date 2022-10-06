@@ -15,7 +15,9 @@ export function SignupProvider({
 }) {
     // color options are a separate state 
     //  to avoid causing collisions when the user is updating the state when typing
+    const [isLoading, setIsLoading] = React.useState(false);
     const [colorOptions, setColorOptions] = React.useState([]);
+    
     const [state, setState] = React.useState(defaultState);
 
     /*
@@ -32,9 +34,36 @@ export function SignupProvider({
     // normally we would separate this into an API file,
     //  but placed here for simplicity
     async function fetchColorOptions() {
+        setIsLoading(true);
         const resp = await fetch('http://localhost:3001/api/colors');
         const data = await resp.json();
         setColorOptions(data);
+        setIsLoading(false);
+    }
+
+    async function sendSignupData() {
+        setIsLoading(true);
+        
+        try {
+            const resp = await fetch('http://localhost:3001/api/submit', {
+                method: 'POST',
+                body: {
+                    name: state.firstname,
+                    email: state.email,
+                    password: state.password,
+                    color: state.password,
+                    terms: state.isAgreed,
+                },
+            });
+            const data = await resp.json();
+            console.log('send resp', data);
+            // if (data.)
+        } catch (err) {
+            return new Error(err);
+        } finally {
+            setIsLoading(false);
+        }
+            
     }
 
     React.useEffect(() => {
@@ -48,8 +77,10 @@ export function SignupProvider({
             value={{
                 ...state,
                 colorOptions,
+                isLoading,
                 updateState,
                 fetchColorOptions,
+                sendSignupData,
             }}>
             {children}
         </SignupContext.Provider>

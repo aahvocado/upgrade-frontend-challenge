@@ -22,23 +22,12 @@ export default function ConfirmationPage() {
         email,
         password,
         color,
-        isAgreed,
-        colorOptions,
-        fetchColorOptions,
+        sendSignupData,
     } = React.useContext(SignupContext);
-
-    const isValid = color !== '' && isAgreed;
-
-    useEffect(() => {
-        // we should only need to attempt this fetch if previous page didn't already
-        if (colorOptions.length <= 0) {
-            fetchColorOptions();
-        }
-    })
 
     function onSubmitForm(evt) {
         evt.preventDefault();
-        setIsValid(color !== '' && isAgreed)
+        sendSignupData();
     }
 
     return (
@@ -60,6 +49,8 @@ export default function ConfirmationPage() {
                     <InfoListItem
                         label='Color'
                         value={color} />
+
+                    {/* For good or for bad, we assume if you've arrived on this page you've agreed */}
                     <InfoListItem
                         label='Terms and Conditions'
                         value={'Agreed'} />

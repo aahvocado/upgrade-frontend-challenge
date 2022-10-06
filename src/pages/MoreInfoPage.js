@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Link, Redirect } from 'wouter';
 
-import {SignupContext} from '../contexts/SignupContext';
+import { SignupContext } from '../contexts/SignupContext';
 
 export default function MoreInfoPage() {
     const [ isReadyForNext, setIsReadyForNext ] = React.useState(false);
