@@ -4,6 +4,7 @@ import { Route } from 'wouter';
 import {SignupProvider} from './contexts/SignupContext';
 import SignupPage from './pages/SignupPage';
 import MoreInfoPage from './pages/MoreInfoPage';
+import ConfirmationPage from './pages/ConfirmationPage';
 
 class App extends Component {
   render() {
@@ -16,6 +17,7 @@ class App extends Component {
         <SignupProvider>
           <Route path="/" component={SignupPage} />
           <Route path="/more-info" component={MoreInfoPage} />
+          <Route path="/confirmation" component={ConfirmationPage} />
         </SignupProvider>
       </>
     );

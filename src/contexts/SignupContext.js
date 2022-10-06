@@ -3,7 +3,7 @@ import React from "react";
 const defaultState = {
     firstname: 'supername',
     email: '',
-    password: '',
+    password: 'test1',
     color: '',
     isAgreed: true,
 

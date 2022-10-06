@@ -24,14 +24,14 @@ export default function MoreInfoPage() {
 
     function onSubmitForm(evt) {
         evt.preventDefault();
-        setIsValid(color !== '' && isAgreed)
+        setIsReadyForNext(isValid);
     }
 
-    // if (isReadyForNext) {
-    //     return (
-    //         <Redirect to='/more-info' />
-    //     )
-    // }
+    if (isReadyForNext) {
+        return (
+            <Redirect to='/confirmation' />
+        )
+    }
 
     return (
         <div className='main-container'>
