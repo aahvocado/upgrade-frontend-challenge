@@ -35,8 +35,18 @@ export function SignupProvider({
     async function fetchColorOptions() {
         const resp = await fetch('http://localhost:3001/api/colors');
         const data = await resp.json();
-        updateState({colorOptions: data});
+        updateState({
+            colorOptions: data,
+            color: data[0], // set default choice to first one because that's how dropdowns work
+        });
+        console.log('done fetchColorOptions')
     }
+
+    React.useEffect(() => {
+        if (state.colorOptions.length <= 0) {
+            fetchColorOptions();
+        }
+    })
 
     return (
         <SignupContext.Provider 

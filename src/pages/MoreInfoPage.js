@@ -4,15 +4,16 @@ import { Link, Redirect } from 'wouter';
 import {SignupContext} from '../contexts/SignupContext';
 
 export default function MoreInfoPage() {
-    const [ isValid, setIsValid ] = React.useState(false);
+    const [ isReadyForNext, setIsReadyForNext ] = React.useState(false);
     const { 
         color,
         isAgreed,
         updateState,
         colorOptions,
         fetchColorOptions,
-     } = React.useContext(SignupContext);
+    } = React.useContext(SignupContext);
 
+    const isValid = color !== '' && isAgreed;
 
     useEffect(() => {
         // we should only need to attempt this fetch if previous page didn't already
@@ -26,8 +27,7 @@ export default function MoreInfoPage() {
         setIsValid(color !== '' && isAgreed)
     }
 
-    // `isValid` should only update after the form is submitted
-    // if (isValid) {
+    // if (isReadyForNext) {
     //     return (
     //         <Redirect to='/more-info' />
     //     )
@@ -41,8 +41,11 @@ export default function MoreInfoPage() {
                 onSubmit={onSubmitForm}
             >
                 <select
+                    disabled={colorOptions.length <= 0}
                     value={color}
-                    onChange={(e) => updateState({color: e.target.value})}
+                    onChange={(e) => {
+                        updateState({color: e.target.value});
+                    }}
                 >
                     { colorOptions.map((color) => (
                         <option key={`${color}-option-key`} value={color}>{color}</option>
@@ -59,9 +62,8 @@ export default function MoreInfoPage() {
 
                 <div className='button-container'>
                     <Link href='/'><button>Back</button></Link>
-                    <button onClick={onSubmitForm}>Next</button>
+                    <button disabled={!isValid} onClick={onSubmitForm}>Next</button>
                 </div>
-
             </form>
         </div>
     )

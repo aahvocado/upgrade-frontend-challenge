@@ -4,28 +4,26 @@ import { Redirect } from 'wouter';
 import {SignupContext} from '../contexts/SignupContext';
 
 export default function SignupPage() {
-    const [ isValid, setIsValid ] = React.useState(false);
+    const [ isReadyForNext, setIsReadyForNext ] = React.useState(false);
     const { 
         firstname,
         email,
         password,
         updateState,
-        fetchColorOptions,
-     } = React.useContext(SignupContext);
+    } = React.useContext(SignupContext);
+
+    const isValid = firstname !== '' && email !== '' && password !== '';
 
     async function onSubmitForm(evt) {
         evt.preventDefault();
-        const willBeValid = firstname !== '' && email !== '' && password !== '';
-        if (!willBeValid) {
+        if (!isValid) {
             return;
         }
         
-        await fetchColorOptions();
-        setIsValid(willBeValid);
+        setIsReadyForNext(isValid);
     }
 
-    // `isValid` should only update after the form is submitted
-    if (isValid) {
+    if (isReadyForNext) {
         return (
             <Redirect to='/more-info' />
         )
@@ -53,7 +51,7 @@ export default function SignupPage() {
                     placeholder='password'></input>
 
                 <div className='button-container'>
-                    <button onClick={onSubmitForm}>Next</button>
+                    <button disabled={!isValid} onClick={onSubmitForm}>Next</button>
                 </div>
             </form>
         </div>
