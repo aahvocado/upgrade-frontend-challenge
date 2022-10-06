@@ -5,6 +5,8 @@ import {SignupProvider} from './contexts/SignupContext';
 import SignupPage from './pages/SignupPage';
 import MoreInfoPage from './pages/MoreInfoPage';
 import ConfirmationPage from './pages/ConfirmationPage';
+import SuccessPage from './pages/SuccessPage';
+import ErrorPage from './pages/ErrorPage';
 
 class App extends Component {
   render() {
@@ -18,6 +20,8 @@ class App extends Component {
           <Route path="/" component={SignupPage} />
           <Route path="/more-info" component={MoreInfoPage} />
           <Route path="/confirmation" component={ConfirmationPage} />
+          <Route path="/success" component={SuccessPage} />
+          <Route path="/error" component={ErrorPage} />
         </SignupProvider>
       </>
     );
