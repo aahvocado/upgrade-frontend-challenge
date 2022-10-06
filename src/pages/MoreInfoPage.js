@@ -49,7 +49,9 @@ export default function MoreInfoPage() {
                 className='form'
                 onSubmit={onSubmitForm}
             >
+                <label htmlFor="favorite-color">Choose your Favorite Color</label>
                 <select
+                    id='favorite-color'
                     disabled={colorOptions.length <= 0}
                     value={color}
                     onChange={(e) => {

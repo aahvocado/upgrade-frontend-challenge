@@ -36,19 +36,24 @@ export default function SignupPage() {
                 className='form'
                 onSubmit={onSubmitForm}
             >
+                <label className='inputlabel' htmlFor='firstname'>First Name</label>
                 <input
                     onChange={(e) => updateState({firstname: e.target.value})}
-                    value={firstname} 
-                    placeholder='first name'></input>
+                    id='firstname'
+                    value={firstname}></input>
+                
+                <label className='inputlabel' htmlFor='email'>E-Mail</label>
                 <input
                     onChange={(e) => updateState({email: e.target.value})}
-                    value={email} 
-                    placeholder='e-mail'></input>
+                    id='email'
+                    value={email}></input>
+
+                <label className='inputlabel' htmlFor='password'>Password</label>
                 <input
                     onChange={(e) => updateState({password: e.target.value})}
+                    id='password'
                     value={password} 
-                    type='password'
-                    placeholder='password'></input>
+                    type='password'></input>
 
                 <div className='button-container'>
                     <button disabled={!isValid} onClick={onSubmitForm}>Next</button>

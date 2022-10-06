@@ -31,6 +31,7 @@ label  {
 
 input + input,
 input + button,
+input + .inputlabel,
 select + .checkbox-component {
     margin-top: 10px;
 }
@@ -48,28 +49,37 @@ button + button {
 .checkbox-component {
     display: flex;
     flex-direction: row;
+    align-items: center;
 }
 .checkbox-component input {
     margin-right: 10px;
 }
 
+.info-ul {
+    padding: 5px;
+}
 .info-li {
     display: flex;
     flex-direction: row;
-    align-items: flex-end;
+    align-items: flex-start;
+    word-break: break-word;
+    white-space: pre-wrap;
+    height: auto;
 }
 .info-li .info-label {
     font-size: 15px;
     color: gray;
     margin-right: 10px;
-    width: 150px;
+    width: 200px;
 }
 .info-li .info-value {
-    font-size: 18px;
+    font-size: 15px;
     color: black;
 }
 .info-li + .info-li {
     margin-top: 10px;
+    border-top: 1px solid lightgray;
+    padding-top: 5px;
 }
 
 .loader-component {

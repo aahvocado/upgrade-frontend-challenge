@@ -47,7 +47,7 @@ export default function ConfirmationPage() {
             <form
                 onSubmit={onSubmitForm}
             >
-                <ul>
+                <ul className='info-ul'>
                     <InfoListItem
                         label='First Name'
                         value={firstname} />
