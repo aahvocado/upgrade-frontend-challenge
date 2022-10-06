@@ -8,6 +8,7 @@ export default function SignupPage({
 
     function onSubmitForm(evt) {
         evt.preventDefault();
+        console.log('submitttt')
     }
 
     return (
@@ -34,7 +35,12 @@ export default function SignupPage({
                         <input
                             onChange={(e) => updateState({password: e.target.value})}
                             value={password} 
+                            type='password'
                             placeholder='password'></input>
+
+                        <div className='button-container'>
+                            <button className="align-end" type='submit'>Next</button>
+                        </div>
                     </form>
                 </div>
             )}
