@@ -22,6 +22,15 @@ export default function MoreInfoPage() {
         }
     })
 
+    useEffect(() => {
+        // set default color choice to first option
+        //  when we first arrive onto this page 
+        //  (we don't do this elsewhere to avoid having data pre-populated before it's even seen)
+        if (color === '' && colorOptions.length > 0) {
+            updateState({color: colorOptions[0]})
+        }
+    }, [colorOptions])
+
     function onSubmitForm(evt) {
         evt.preventDefault();
         setIsReadyForNext(isValid);

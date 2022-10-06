@@ -6,8 +6,6 @@ const defaultState = {
     password: 'test1',
     color: '',
     isAgreed: true,
-
-    colorOptions: [],
 }
 
 export const SignupContext = React.createContext(defaultState)
@@ -15,6 +13,9 @@ export const SignupContext = React.createContext(defaultState)
 export function SignupProvider({
     children,
 }) {
+    // color options are a separate state 
+    //  to avoid causing collisions when the user is updating the state when typing
+    const [colorOptions, setColorOptions] = React.useState([]);
     const [state, setState] = React.useState(defaultState);
 
     /*
@@ -28,22 +29,16 @@ export function SignupProvider({
         })
     }
 
-    /*
-        normally we would separate this into an API file,
-          but placed here for simplicity
-    */
+    // normally we would separate this into an API file,
+    //  but placed here for simplicity
     async function fetchColorOptions() {
         const resp = await fetch('http://localhost:3001/api/colors');
         const data = await resp.json();
-        updateState({
-            colorOptions: data,
-            color: data[0], // set default choice to first one because that's how dropdowns work
-        });
-        console.log('done fetchColorOptions')
+        setColorOptions(data);
     }
 
     React.useEffect(() => {
-        if (state.colorOptions.length <= 0) {
+        if (colorOptions.length <= 0) {
             fetchColorOptions();
         }
     })
@@ -52,6 +47,7 @@ export function SignupProvider({
         <SignupContext.Provider 
             value={{
                 ...state,
+                colorOptions,
                 updateState,
                 fetchColorOptions,
             }}>
