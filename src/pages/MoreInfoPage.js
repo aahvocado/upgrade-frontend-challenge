@@ -39,10 +39,10 @@ export default function MoreInfoPage({
     }
 
     return (
-        <div>
+        <div className='main-container'>
             <h2>Additional Info</h2>
             <form
-                className='signup-form'
+                className='form'
                 // onSubmit={onSubmitForm}
             >
                 <select>

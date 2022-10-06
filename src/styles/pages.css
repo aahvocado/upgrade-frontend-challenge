@@ -5,10 +5,21 @@ body {
     justify-content: center;
     align-items: center;
 }
-.main-container {
+#root {
     max-width: 640px;
-}
-.signup-form {
+    height: 500px;
+    padding: 30px 15px;
+    border: 1px solid lightgray;
     display: flex;
     flex-direction: column;
+}
+.main-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+form {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
 }

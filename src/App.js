@@ -8,7 +8,7 @@ import MoreInfoPage from './pages/MoreInfoPage';
 class App extends Component {
   render() {
     return (
-      <div className='main-container'>
+      <>
         <header>
           <h1>Welcome to Upgrade challenge</h1>
         </header>
@@ -17,8 +17,7 @@ class App extends Component {
           <Route path="/" component={SignupPage} />
           <Route path="/more-info" component={MoreInfoPage} />
         </SignupProvider>
-          
-      </div>
+      </>
     );
   }
 }

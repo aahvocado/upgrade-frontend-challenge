@@ -25,10 +25,10 @@ export default function SignupPage() {
     }
 
     return (
-        <div>
+        <div className='main-container'>
             <h2>Sign Up</h2>
             <form
-                className='signup-form'
+                className='form'
                 onSubmit={onSubmitForm}
             >
                 <input
