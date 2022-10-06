@@ -8,6 +8,9 @@ button {
     padding: 5px 10px;
     cursor: pointer;
 }
+select {
+    padding: 5px;
+}
 
 input + input,
 input + button,
@@ -18,8 +21,5 @@ input + .button-container {
 .button-container {
     display: flex;
     flex-direction: row;
-}
-
-.align-end {
-    margin-left: auto;
+    justify-content: flex-end;
 }

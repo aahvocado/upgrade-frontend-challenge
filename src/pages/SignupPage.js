@@ -46,7 +46,7 @@ export default function SignupPage() {
                     placeholder='password'></input>
 
                 <div className='button-container'>
-                    <button className="align-end" onClick={onSubmitForm}>Next</button>
+                    <button onClick={onSubmitForm}>Next</button>
                 </div>
             </form>
         </div>

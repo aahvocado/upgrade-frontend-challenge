@@ -1,25 +1,36 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {SignupContext} from '../contexts/SignupContext';
 
 export default function MoreInfoPage({
     
 }) {
-    const { updateState } = React.useContext(SignupContext);
+    const [ colorOptions, setColorOptions ] = React.useState([]);
 
-    function onSubmitForm(evt) {
-        evt.preventDefault();
+    async function fetchColorOptions() {
+        const resp = await fetch('http://localhost:3001/api/colors');
+        const data = await resp.json();
+        console.log(data)
+        setColorOptions(data);
     }
 
+    useEffect(() => {
+        if (colorOptions.length <= 0) {
+            fetchColorOptions();
+        }
+    })
+
     return (
-        <div >
+        <div>
             <h2>Additional Info</h2>
             <form
                 className='signup-form'
-                onSubmit={onSubmitForm}
+                // onSubmit={onSubmitForm}
             >
-                <div className='button-container'>
-                    <button className="align-end" type='submit'>Next</button>
-                </div>
+                <select>
+                    { colorOptions.map((color) => (
+                        <option key={`${color}-option-key`} value={color}>{color}</option>
+                    ))}
+                </select>
             </form>
         </div>
     )
