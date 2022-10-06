@@ -5,7 +5,7 @@ const defaultState = {
     email: '',
     password: '',
     color: '',
-    isAgreed: false,
+    isAgreed: true,
 }
 
 export const SignupContext = React.createContext(defaultState)

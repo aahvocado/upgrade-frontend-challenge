@@ -13,8 +13,9 @@ select {
 }
 
 input + input,
-input + button {
-    margin-top: 5px;
+input + button,
+select + .checkbox-component {
+    margin-top: 10px;
 }
 
 .button-container {
@@ -25,4 +26,12 @@ input + button {
 }
 button + button {
     margin-left: 5px;
+}
+
+.checkbox-component {
+    display: flex;
+    flex-direction: row;
+}
+.checkbox-component input {
+    margin-right: 10px;
 }
