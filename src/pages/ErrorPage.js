@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from 'wouter';
 
-import {SignupContext} from '../contexts/SignupContext';
+import { AppContext } from '../contexts/AppContext';
 
-export default function SignupPage() {
+export default function ErrorPage() {
     const { 
         error,
-    } = React.useContext(SignupContext);
+    } = useContext(AppContext);
+
+    const errorDisplay = (error === '' || error === undefined) ? 'Uh oh, something went wrong. Please try again later.' : error;
 
     return (
         <div className='main-container'>
@@ -14,7 +16,7 @@ export default function SignupPage() {
 
             <div className="form">
                 X
-                <div>Uh oh, something went wrong. Please try again later.</div>
+                <div>{errorDisplay}</div>
             </div>
 
             <div className="button-container">                    

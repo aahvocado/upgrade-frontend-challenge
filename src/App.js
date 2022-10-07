@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Route } from 'wouter';
+import { Route, useLocation } from 'wouter';
 
 import LoaderComponent from './components/Loader';
 
@@ -34,7 +34,17 @@ class App extends Component {
 function AppWrapper() {
   const {
     isLoading,
+    updateAppState,
   } = React.useContext(AppContext);
+  const [location] = useLocation();
+
+  // clean up error/success when navigating away from their respective pages
+  React.useEffect(() => {
+    if (location !== '/error' && location !== '/success') {
+      console.log('cleaning error state');
+      updateAppState({success: undefined, error: undefined});
+    }
+  }, [location])
 
   return (
     <>

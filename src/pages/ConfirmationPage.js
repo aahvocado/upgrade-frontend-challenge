@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Link } from 'wouter';
+import { Link, Redirect } from 'wouter';
 
 import { AppContext } from '../contexts/AppContext';
 import { SignupContext } from '../contexts/SignupContext';
@@ -18,6 +18,10 @@ function InfoListItem({
 
 export default function ConfirmationPage() {
     const { 
+        error,
+        success,
+    } = useContext(AppContext);
+    const { 
         firstname,
         email,
         password,
@@ -28,6 +32,17 @@ export default function ConfirmationPage() {
     function onSubmitForm(evt) {
         evt.preventDefault();
         sendSignupData();
+    }
+
+    if (error) {
+        return (
+            <Redirect to='/error' />
+        )
+    }
+    if (success) {
+        return (
+            <Redirect to='/success' />
+        )
     }
 
     return (

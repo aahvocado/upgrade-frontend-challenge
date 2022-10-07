@@ -3,11 +3,11 @@ import React, { useContext } from "react";
 import { AppContext } from '../contexts/AppContext';
 
 const defaultState = {
-    firstname: 'supername',
+    firstname: '',
     email: 'asdf',
     password: 'test1',
-    color: 'red',
-    isAgreed: true,
+    color: '',
+    isAgreed: false,
 }
 
 export const SignupContext = React.createContext(defaultState)
@@ -27,34 +27,31 @@ export function SignupProvider({
 
     async function sendSignupData() {
         updateAppState({ isLoading: true });
-        
-        try {
-            const resp = await fetch('http://localhost:3001/api/submit', {
-                method: 'POST',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    name: state.firstname,
-                    email: state.email,
-                    password: state.password,
-                    color: state.color,
-                    terms: state.isAgreed,
-                })
+
+        const resp = await fetch('http://localhost:3001/api/submit', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                name: state.firstname,
+                email: state.email,
+                password: state.password,
+                color: state.color,
+                terms: state.isAgreed,
             })
+        })
 
-            if (resp.status !== 200) {
-                updateAppState({error: 'Submit error'});
-            }
-
-        } catch (err) {
-            console.log('error', err)
-            updateAppState({error: err});
-            return new Error(err);
-        } finally {
+        if (resp.status !== 200) {
+            const data = await resp.json();
+            updateAppState({ 
+                error: data.error,
+                isLoading: false, 
+            });
+        } else {
             updateAppState({ isLoading: false });
-        }
+        }        
     }
 
     return (

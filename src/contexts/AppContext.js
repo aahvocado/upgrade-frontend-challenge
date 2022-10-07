@@ -29,7 +29,7 @@ export function AppProvider({
         if (appState.isLoading) {
             return;
         }
-        
+
         const {silent = false} = options;
         if (!silent) {
             updateAppState({isLoading: true});
