@@ -17,11 +17,11 @@ export default function MoreInfoPage() {
     } = useContext(SignupContext);
 
     const isValid = color !== '' && isAgreed;
-    console.log({colorOptions})
+
     useEffect(() => {
         // we should only need to attempt this fetch if previous page didn't already
         if (colorOptions.length <= 0) {
-            // fetchColorOptions();
+            fetchColorOptions();
         }
     })
 

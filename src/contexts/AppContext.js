@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 const defaultState = {
     isLoading: false,
     colorOptions: [],
+    error: undefined,
 }
 
 export const AppContext = React.createContext(defaultState)
@@ -12,50 +13,29 @@ export function AppProvider({
 }) {
     // color options are a separate state 
     //  to avoid causing collisions when the user is updating the state when typing
-    const [appState, setAppState] = React.useState(defaultState);
-    function updateState(changes) {
+    const [appState, setAppState] = useState(defaultState);
+    function updateAppState(changes) {
         setAppState({
             ...appState,
             ...changes,
         })
     }
 
-    // normally we would separate this into an API file,
-    //  but placed here for simplicity
-    async function fetchColorOptions() {
-        updateState({isLoading: true});
+    // the silent flag is to try to provide a seamless experience
+    //  for the user when the first arrive on the page,
+    //  by fetching the color options before they need to use it
+    async function fetchColorOptions({silent = false}) {
+        if (!silent) {
+            updateAppState({isLoading: true});
+        }
         const resp = await fetch('http://localhost:3001/api/colors');
         const data = await resp.json();
-        updateState({colorOptions: data, isLoading: false});
+        updateAppState({colorOptions: data, isLoading: false});
     }
 
-    async function sendSignupData() {
-        updateState({isLoading: true});
-
-        try {
-            const resp = await fetch('http://localhost:3001/api/submit', {
-                method: 'POST',
-                body: {
-                    name: state.firstname,
-                    email: state.email,
-                    password: state.password,
-                    color: state.password,
-                    terms: state.isAgreed,
-                },
-            });
-            const data = await resp.json();
-            console.log('send resp', data);
-            // if (data.)
-        } catch (err) {
-            return new Error(err);
-        } finally {
-            updateState({isLoading: false});
-        }
-    }
-
-    React.useEffect(() => {
+    useEffect(() => {
         if (appState.colorOptions.length <= 0 && !appState.isLoading) {
-            fetchColorOptions();
+            fetchColorOptions({silent: true});
         }
     })
 
@@ -64,7 +44,8 @@ export function AppProvider({
             value={{
                 ...appState,
                 fetchColorOptions,
-                sendSignupData,
+                // sendSignupData,
+                updateAppState,
             }}>
             {children}
         </AppContext.Provider>

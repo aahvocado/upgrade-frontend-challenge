@@ -1,7 +1,8 @@
-import React, { useEffect } from "react";
-import { Link, Redirect } from 'wouter';
+import React, { useContext } from "react";
+import { Link } from 'wouter';
 
-import {SignupContext} from '../contexts/SignupContext';
+import { AppContext } from '../contexts/AppContext';
+import { SignupContext } from '../contexts/SignupContext';
 
 function InfoListItem({
     label,
@@ -16,14 +17,13 @@ function InfoListItem({
 }
 
 export default function ConfirmationPage() {
-    const [ isReadyForNext, setIsReadyForNext ] = React.useState(false);
     const { 
         firstname,
         email,
         password,
         color,
         sendSignupData,
-    } = React.useContext(SignupContext);
+    } = useContext(SignupContext);
 
     function onSubmitForm(evt) {
         evt.preventDefault();
