@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Redirect } from 'wouter';
 
 import {SignupContext} from '../contexts/SignupContext';
@@ -9,8 +9,8 @@ export default function SignupPage() {
         firstname,
         email,
         password,
-        updateState,
-    } = React.useContext(SignupContext);
+        updateSignup,
+    } = useContext(SignupContext);
 
     const isValid = firstname !== '' && email !== '' && password !== '';
 
@@ -38,19 +38,19 @@ export default function SignupPage() {
             >
                 <label className='inputlabel' htmlFor='firstname'>First Name</label>
                 <input
-                    onChange={(e) => updateState({firstname: e.target.value})}
+                    onChange={(e) => updateSignup({firstname: e.target.value})}
                     id='firstname'
                     value={firstname}></input>
                 
                 <label className='inputlabel' htmlFor='email'>E-Mail</label>
                 <input
-                    onChange={(e) => updateState({email: e.target.value})}
+                    onChange={(e) => updateSignup({email: e.target.value})}
                     id='email'
                     value={email}></input>
 
                 <label className='inputlabel' htmlFor='password'>Password</label>
                 <input
-                    onChange={(e) => updateState({password: e.target.value})}
+                    onChange={(e) => updateSignup({password: e.target.value})}
                     id='password'
                     value={password} 
                     type='password'></input>

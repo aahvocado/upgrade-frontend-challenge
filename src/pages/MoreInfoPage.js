@@ -1,24 +1,27 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { Link, Redirect } from 'wouter';
 
+import { AppContext } from '../contexts/AppContext';
 import { SignupContext } from '../contexts/SignupContext';
 
 export default function MoreInfoPage() {
     const [ isReadyForNext, setIsReadyForNext ] = React.useState(false);
+    const {
+        colorOptions,
+        fetchColorOptions,
+    } = useContext(AppContext);
     const { 
         color,
         isAgreed,
-        updateState,
-        colorOptions,
-        fetchColorOptions,
-    } = React.useContext(SignupContext);
+        updateSignup,
+    } = useContext(SignupContext);
 
     const isValid = color !== '' && isAgreed;
-
+    console.log({colorOptions})
     useEffect(() => {
         // we should only need to attempt this fetch if previous page didn't already
         if (colorOptions.length <= 0) {
-            fetchColorOptions();
+            // fetchColorOptions();
         }
     })
 
@@ -27,7 +30,7 @@ export default function MoreInfoPage() {
         //  when we first arrive onto this page 
         //  (we don't do this elsewhere to avoid having data pre-populated before it's even seen)
         if (color === '' && colorOptions.length > 0) {
-            updateState({color: colorOptions[0]})
+            updateSignup({color: colorOptions[0]})
         }
     }, [colorOptions])
 
@@ -55,7 +58,7 @@ export default function MoreInfoPage() {
                     disabled={colorOptions.length <= 0}
                     value={color}
                     onChange={(e) => {
-                        updateState({color: e.target.value});
+                        updateSignup({color: e.target.value});
                     }}
                 >
                     { colorOptions.map((color) => (
@@ -65,7 +68,7 @@ export default function MoreInfoPage() {
                 
                 <div className='checkbox-component'>
                     <input 
-                        onChange={(e) => updateState({isAgreed: !isAgreed})}
+                        onChange={(e) => updateSignup({isAgreed: !isAgreed})}
                         checked={isAgreed}
                         type='checkbox' id='privacy-agreement' />
                     <label htmlFor='privacy-agreement'>I agree to Terms and Conditions</label>

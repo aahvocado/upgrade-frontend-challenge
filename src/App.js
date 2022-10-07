@@ -3,7 +3,9 @@ import { Route } from 'wouter';
 
 import LoaderComponent from './components/Loader';
 
-import { SignupContext, SignupProvider } from './contexts/SignupContext';
+import { AppContext, AppProvider } from './contexts/AppContext';
+import { SignupProvider } from './contexts/SignupContext';
+
 import SignupPage from './pages/SignupPage';
 import MoreInfoPage from './pages/MoreInfoPage';
 import ConfirmationPage from './pages/ConfirmationPage';
@@ -18,18 +20,21 @@ class App extends Component {
           <h1>Welcome to Upgrade challenge</h1>
         </header>
 
-        <SignupProvider>
-          <AppWrapper />
-        </SignupProvider>
+        <AppProvider>
+          <SignupProvider>
+            <AppWrapper />
+          </SignupProvider>
+        </AppProvider>
+          
       </>
     );
   }
 }
 
 function AppWrapper() {
-  const { 
+  const {
     isLoading,
-  } = React.useContext(SignupContext);
+  } = React.useContext(AppContext);
 
   return (
     <>
