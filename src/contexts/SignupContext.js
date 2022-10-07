@@ -50,7 +50,10 @@ export function SignupProvider({
                 isLoading: false, 
             });
         } else {
-            updateAppState({ isLoading: false });
+            updateAppState({ 
+                success: true,
+                isLoading: false,
+            });
         }        
     }
 
