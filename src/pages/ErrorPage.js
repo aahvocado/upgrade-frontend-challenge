@@ -3,6 +3,8 @@ import { Link } from 'wouter';
 
 import { AppContext } from '../contexts/AppContext';
 
+import { ReactComponent as ErrorIcon } from '../icons/error-svgrepo-com.svg';
+
 export default function ErrorPage() {
     const { 
         error,
@@ -14,8 +16,8 @@ export default function ErrorPage() {
         <div className='main-container'>
             <h2>Error</h2>
 
-            <div className="form">
-                X
+            <div className="icon-container">
+                <ErrorIcon style={{width: 50, height: 50}} />
                 <div>{errorDisplay}</div>
             </div>
 
