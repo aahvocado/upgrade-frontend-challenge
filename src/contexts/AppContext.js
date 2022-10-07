@@ -4,6 +4,7 @@ const defaultState = {
     isLoading: false,
     colorOptions: [],
     error: undefined,
+    success: undefined,
 }
 
 export const AppContext = React.createContext(defaultState)
@@ -22,9 +23,14 @@ export function AppProvider({
     }
 
     // the silent flag is to try to provide a seamless experience
-    //  for the user when the first arrive on the page,
-    //  by fetching the color options before they need to use it
-    async function fetchColorOptions({silent = false}) {
+    //  for the user when the first arrive on the page
+    //  by fetching the color options before are on the page that uses it
+    async function fetchColorOptions(options = {}) {
+        if (appState.isLoading) {
+            return;
+        }
+        
+        const {silent = false} = options;
         if (!silent) {
             updateAppState({isLoading: true});
         }
@@ -44,7 +50,6 @@ export function AppProvider({
             value={{
                 ...appState,
                 fetchColorOptions,
-                // sendSignupData,
                 updateAppState,
             }}>
             {children}
